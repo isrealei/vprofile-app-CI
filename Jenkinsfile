@@ -44,5 +44,11 @@ pipeline{
            }
         }
 
+        stage ("Checksytle Analysis"){
+             steps{
+                sh "mvn checkstyle:checksytle"
+             }
+        }
+
      }   
 }
