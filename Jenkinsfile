@@ -1,3 +1,8 @@
+def COLOR_MAP = [
+    'SUCCESS': 'good', 
+    'FAILURE': 'danger',
+]
+
 pipeline{
 
      agent any
@@ -85,26 +90,35 @@ pipeline{
             }
         }
 
-        stage ("UploadArtifact"){
-            steps {
-                 nexusArtifactUploader(
-                  nexusVersion: 'nexus3',
-                  protocol: 'http',
-                  nexusUrl: "${NEXUS_IP}:${NEXUS_PORT}",
-                  groupId: 'QA',
-                  version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
-                  repository: "${RELEASE_REPO}",
-                  credentialsId: "${NEXUS_LOGIN}",
-                  artifacts: [
-                    [artifactId: 'vproapp',
-                     classifier: '',
-                     file: 'target/vprofile-v2.war',
-                     type: 'war']
-                  ]
-                )
-            }
+        // stage ("UploadArtifact"){
+        //     steps {
+        //          nexusArtifactUploader(
+        //           nexusVersion: 'nexus3',
+        //           protocol: 'http',
+        //           nexusUrl: "${NEXUS_IP}:${NEXUS_PORT}",
+        //           groupId: 'QA',
+        //           version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+        //           repository: "${RELEASE_REPO}",
+        //           credentialsId: "${NEXUS_LOGIN}",
+        //           artifacts: [
+        //             [artifactId: 'vproapp',
+        //              classifier: '',
+        //              file: 'target/vprofile-v2.war',
+        //              type: 'war']
+        //           ]
+        //         )
+        //     }
+        // }
+
+
+     }
+     post {
+        always {
+            echo 'Slack Notifications.'
+            slackSend channel: '#isreal-channel',
+                color: COLOR_MAP[currentBuild.currentResult],
+                message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         }
+    }
 
-
-     }   
 }
