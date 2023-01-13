@@ -18,10 +18,10 @@ pipeline{
         NEXUS_PASS = "76932072"
         RELEASE_REPO = 'vprofile-release'
         CENTRAL_REPO = 'vpro-maven-central'
-        NEXUS_IP = '172.31.10.82'
+        NEXUS_IP = '172.31.24.73'
         NEXUS_PORT = '8081'
         NEXUS_GRP_REPO = 'vprofile-maven-group'
-        NEXUS_LOGIN = 'nexuslogin'
+        NEXUS_LOGIN = 'nexus_login'
         SONARSERVER = "sonarserver"
         SONARSCANNER = "sonarscanner"
 
