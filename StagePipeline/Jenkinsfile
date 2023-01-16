@@ -18,10 +18,10 @@ pipeline{
         NEXUS_PASS = "76932072"
         RELEASE_REPO = 'vprofile-release'
         CENTRAL_REPO = 'vpro-maven-central'
-        NEXUS_IP = '172.31.10.82'
+        NEXUS_IP = '172.31.24.73'
         NEXUS_PORT = '8081'
         NEXUS_GRP_REPO = 'vprofile-maven-group'
-        NEXUS_LOGIN = 'nexuslogin'
+        NEXUS_LOGIN = 'nexus_login'
         SONARSERVER = "sonarserver"
         SONARSCANNER = "sonarscanner"
 
@@ -90,25 +90,25 @@ pipeline{
             }
         }
 
-        // stage ("UploadArtifact"){
-        //     steps {
-        //          nexusArtifactUploader(
-        //           nexusVersion: 'nexus3',
-        //           protocol: 'http',
-        //           nexusUrl: "${NEXUS_IP}:${NEXUS_PORT}",
-        //           groupId: 'QA',
-        //           version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
-        //           repository: "${RELEASE_REPO}",
-        //           credentialsId: "${NEXUS_LOGIN}",
-        //           artifacts: [
-        //             [artifactId: 'vproapp',
-        //              classifier: '',
-        //              file: 'target/vprofile-v2.war',
-        //              type: 'war']
-        //           ]
-        //         )
-        //     }
-        // }
+        stage ("UploadArtifact"){
+            steps {
+                 nexusArtifactUploader(
+                  nexusVersion: 'nexus3',
+                  protocol: 'http',
+                  nexusUrl: "${NEXUS_IP}:${NEXUS_PORT}",
+                  groupId: 'QA',
+                  version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
+                  repository: "${RELEASE_REPO}",
+                  credentialsId: "${NEXUS_LOGIN}",
+                  artifacts: [
+                    [artifactId: 'vproapp',
+                     classifier: '',
+                     file: 'target/vprofile-v2.war',
+                     type: 'war']
+                  ]
+                )
+            }
+        }
 
 
      }
