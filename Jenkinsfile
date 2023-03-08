@@ -8,13 +8,6 @@ pipeline {
 */	
     environment {
         NEXUS_VERSION = "nexus3"
-        NEXUS_USER= "admin"
-        NEXUS_PASS= "admin"
-        RELEASE_REPO= "vprofile-release"
-        CENTRAL_REPO= "vpro-maven-central"
-        NEXUSIP= "172.31.18.143"
-        NEXUSPORT= "8081"
-        NEXUS_GRP_REPO= "vpro-maven-group"
         NEXUS_PROTOCOL = "http"
         NEXUS_URL = "172.31.18.143:8081"
         NEXUS_REPOSITORY = "vprofile-release"
@@ -60,29 +53,29 @@ pipeline {
             }
         }
 
-        // stage('CODE ANALYSIS with SONARQUBE') {
+        stage('CODE ANALYSIS with SONARQUBE') {
           
-		//   environment {
-        //      scannerHome = tool 'sonarscanner4'
-        //   }
+		  environment {
+             scannerHome = tool 'sonarscanner4'
+          }
 
-        //   steps {
-        //     withSonarQubeEnv('sonar-pro') {
-        //        sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
-        //            -Dsonar.projectName=vprofile-repo \
-        //            -Dsonar.projectVersion=1.0 \
-        //            -Dsonar.sources=src/ \
-        //            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
-        //            -Dsonar.junit.reportsPath=target/surefire-reports/ \
-        //            -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-        //            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-        //     }
+          steps {
+            withSonarQubeEnv('sonar-pro') {
+               sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+                   -Dsonar.projectName=vprofile-repo \
+                   -Dsonar.projectVersion=1.0 \
+                   -Dsonar.sources=src/ \
+                   -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
+                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
+                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
+            }
 
-        //     timeout(time: 10, unit: 'MINUTES') {
-        //        waitForQualityGate abortPipeline: true
-        //     }
-        //   }
-        // }
+            timeout(time: 10, unit: 'MINUTES') {
+               waitForQualityGate abortPipeline: true
+            }
+          }
+        }
 
         stage("Publish to Nexus Repository Manager") {
             steps {
