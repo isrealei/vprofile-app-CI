@@ -15,11 +15,11 @@ pipeline{
      environment {
         SNAP_REPO = 'vprofile-snapshot'
         NEXUS_USER = 'admin'
-        NEXUS_PASS = "76932072"
+        NEXUS_PASS = "admin"
         RELEASE_REPO = 'vprofile-release'
         CENTRAL_REPO = 'vpro-maven-central'
-        NEXUS_IP = '172.31.24.73'
-        NEXUS_PORT = '8081'
+        NEXUSIP = '172.31.24.73'
+        NEXUSPORT = '8081'
         NEXUS_GRP_REPO = 'vprofile-maven-group'
         NEXUS_LOGIN = 'nexus_login'
         SONARSERVER = "sonarserver"
@@ -95,7 +95,7 @@ pipeline{
                  nexusArtifactUploader(
                   nexusVersion: 'nexus3',
                   protocol: 'http',
-                  nexusUrl: "${NEXUS_IP}:${NEXUS_PORT}",
+                  nexusUrl: "${NEXUSIP}:${NEXUSPORT}",
                   groupId: 'QA',
                   version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}",
                   repository: "${RELEASE_REPO}",
