@@ -21,9 +21,10 @@ pipeline{
         NEXUSIP = '172.31.24.73'
         NEXUSPORT = '8081'
         NEXUS_GRP_REPO = 'vprofile-maven-group'
-        NEXUS_LOGIN = 'nexus_login'
+        NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = "sonarserver"
         SONARSCANNER = "sonarscanner"
+        NEXUSPASS = credentials ('nexuspass')
 
 
 
@@ -120,7 +121,7 @@ pipeline{
                 disableHostKeyChecking: true,
                 extraVars: [
                   USER: "admin"
-                  PASS: "admin"
+                  PASS: "${NEXUSPASS}"
                   nexusip: "172.31.18.143"
                   reponame: "vprofile-release"
                   groupid: "QA"
