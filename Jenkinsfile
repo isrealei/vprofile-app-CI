@@ -114,7 +114,7 @@ pipeline{
         stage('Ansible Deploy to staging') {
             steps {
                 ansiblePlaybook( [
-                playbook: 'ansible/site.yaml',
+                playbook: 'ansible/site.yml',
                 inventory: 'ansible/stage.inventory',
                 credentialsId: 'applogin',
                 installation: 'ansible',
