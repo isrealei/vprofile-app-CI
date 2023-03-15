@@ -25,11 +25,11 @@ pipeline{
                         parameters({
                             string(
                                 defaultvalue: '',
-                                name: 'BUILD'
+                                name: 'BUILD',
                             ),
                             string(
                                 defaultvalue: '',
-                                name: 'TIME'
+                                name: 'TIME',
                             )
                         })
                     ])
