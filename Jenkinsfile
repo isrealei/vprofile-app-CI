@@ -118,7 +118,7 @@ pipeline{
                 inventory: 'ansible/stage.inventory',
                 credentialsId: 'applogin',
                 installation: 'ansible'
-                disableHostKeyChecking: true,
+                disableHostKeyChecking: true, ]
                 extraVars: [
                   USER: "admin"
                   PASS: "${NEXUSPASS}"
