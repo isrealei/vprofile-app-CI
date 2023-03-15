@@ -117,7 +117,7 @@ pipeline{
                 playbook: 'ansible/site.yaml',
                 inventory: 'ansible/stage.inventory',
                 credentialsId: 'applogin',
-                installation: 'ansible'
+                installation: 'ansible',
                 disableHostKeyChecking: true, 
                 extraVars: [
                   USER: "admin" ,
