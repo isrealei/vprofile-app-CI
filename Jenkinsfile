@@ -18,24 +18,24 @@ pipeline{
 
      stages {
 
-        stage('Set up parameter'){
+        stage('Setup parameters') {
             steps {
-                script {
+                script { 
                     properties([
-                        parameters({
+                        parameters([
                             string(
-                                defaultvalue: '',
-                                name: 'BUILD',
+                                defaultValue: '', 
+                                name: 'BUILD', 
                             ),
-                            string(
-                                defaultvalue: '',
-                                name: 'TIME',
+							string(
+                                defaultValue: '', 
+                                name: 'TIME', 
                             )
-                        })
+                        ])
                     ])
                 }
             }
-        }
+		}
        
         stage('Ansible Deploy to prod') {
             steps {
