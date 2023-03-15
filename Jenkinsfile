@@ -118,20 +118,20 @@ pipeline{
                 inventory: 'ansible/stage.inventory',
                 credentialsId: 'applogin',
                 installation: 'ansible'
-                disableHostKeyChecking: true, ]
+                disableHostKeyChecking: true, 
                 extraVars: [
-                  USER: "admin"
-                  PASS: "${NEXUSPASS}"
-                  nexusip: "172.31.18.143"
-                  reponame: "vprofile-release"
-                  groupid: "QA"
-                  time: "${env.BUILD_TIMESTAMP}"
-                  build: "${env.BUILD_ID}"
-                  artifactid: "vproapp"
+                  USER: "admin" ,
+                  PASS: "${NEXUSPASS}" ,
+                  nexusip: "172.31.18.143",
+                  reponame: "vprofile-release",
+                  groupid: "QA",
+                  time: "${env.BUILD_TIMESTAMP}",
+                  build: "${env.BUILD_ID}",
+                  artifactid: "vproapp",
                   vprofile_version: "vproapp-${env.BUILD_ID}-${env.BUILD_TIMESTAMP}.war"
-                ]
-                colorized: true)
-                ]
+                ],
+                colorized: true ])
+                
             }
         }
 
