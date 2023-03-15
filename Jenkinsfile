@@ -119,7 +119,15 @@ pipeline{
                 installation: 'ansible'
                 disableHostKeyChecking: true,
                 extraVars: [
-
+                  USER: "admin"
+                  PASS: "admin"
+                  nexusip: "172.31.18.143"
+                  reponame: "vprofile-release"
+                  groupid: "QA"
+                  time: "${env.BUILD_TIMESTAMP}"
+                  build: "${env.BUILD_ID}"
+                  artifactid: "vproapp"
+                  vprofile_version: "vproapp-${env.BUILD_ID}-${env.BUILD_TIMESTAMP}.war"
                 ]
                 colorized: true)
                 ]
