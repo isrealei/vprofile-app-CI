@@ -116,6 +116,7 @@ pipeline{
         }
 
         stage("Deploy to AWS elastick beanstalk") {
+            // Install pipeline: AWS steps and AWS SDK plugins on jenkins to run the withAWS method
             steps{
                 withAWS(credentials: "awscreds", region: "us-east-1"){
                  
