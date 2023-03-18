@@ -120,7 +120,7 @@ pipeline{
                 withAWS(credentials: "awscreds", region: "us-east-1"){
                  
                 // This command upload the artifact generated from the build process to AWS s3 bucket
-                sh "aws s3 cp ./target/vprofile-v2.war  s3://${AWS_S3_BUCKET}/${ARTIFACT_NAME}"
+                sh "aws s3 cp ./target/vprofile-v2.war  s3://$AWS_S3_BUCKET/$ARTIFACT_NAME"
 
                 // This command create a new application version in aws beanstalk.  This new application version is dowloaded from Amazon s3 bucket 
                 sh "aws elasticbeanstalk  create-application-version --application-name $AWS_EB_APP_NAME --version-label $AWS_EB_APP_VERSION --source-bundle S3Bucket=$AWS_S3_BUCKET,S3Key=$ARTIFACT_NAME"
