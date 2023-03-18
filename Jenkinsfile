@@ -1,3 +1,5 @@
+// This below function is to get the last build number of a auccessfull build from the staging pipeline
+
 def buildNumber = jenkins.instance.getItem("cicd-jenkins-beanstalk-stage").lastSuccessfulBuild.number
 
 def COLOR_MAP = [
