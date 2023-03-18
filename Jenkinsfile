@@ -2,7 +2,7 @@
 import jenkins.model.*
 jenkins = Jenkins.instance
 
-def buildNumber = jenkins.instance.getItem('cicd-jenkins-beanstalk-stage').lastSuccessfulBuild.number
+def buildNumber = Jenkins.instance.getItem('cicd-jenkins-beanstalk-stage').lastSuccessfulBuild.number
 
 def COLOR_MAP = [
     'SUCCESS': 'good', 
