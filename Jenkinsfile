@@ -24,7 +24,11 @@ pipeline{
         NEXUS_LOGIN = 'nexuslogin'
         SONARSERVER = "sonarserver"
         SONARSCANNER = "sonarscanner"
-        
+        ARTIFACT_NAME = "vprofile-v${BUILD_ID}.war"
+        AWS_S3_BUCKET = "isreal-kops-state"
+        AWS_EB_APP_NAME = "delightapp"
+        AWS_EB_ENVIRONMENT = "Delightapp-env"
+        AWS_EB_APP_VERSION = "${BUILD_ID}"
 
 
 
@@ -109,6 +113,24 @@ pipeline{
                   ]
                 )
             }
+        }
+
+        stage("Deploy to AWS elastick beanstalk") {
+            steps{
+                withAWS(credentials: "awscreds", region: "us-east-1"){
+                 
+                // This command upload the artifact generated from the build process to AWS s3 bucket
+                sh "aws s3 cp ./target/vprofile-v2.war  s3://${AWS_S3_BUCKET}/${ARTIFACT_NAME}"
+
+                // This command create a new application version in aws beanstalk.  This new application version is dowloaded from Amazon s3 bucket 
+                sh "aws elasticbeanstalk  create-application-version --application-name $AWS_EB_APP_NAME --version-label $AWS_EB_APP_VERSION --source-bundle S3Bucket=$AWS_S3_BUCKET,S3Key=$ARTIFACT_NAME"
+
+                // This command deploy the new application version to the beanstalk environment 
+                sh "aws elasticbeanstalk update-environment --application-name $AWS_EB_APP_NAME --environment-name $AWS_EB_ENVIRONMENT --version-label $AWS_EB_APP_VERSION"
+                
+                  }
+            }
+            
         }
 
 
