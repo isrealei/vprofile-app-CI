@@ -39,8 +39,6 @@ pipeline{
      }
 
      stages {
-        
-       
 
         stage("Deploy to AWS elastick beanstalk") {
             // Install pipeline: AWS steps and AWS SDK plugins on jenkins to run the withAWS method
@@ -54,8 +52,6 @@ pipeline{
             }
             
         }
-
-
      }
      post {
         always {
