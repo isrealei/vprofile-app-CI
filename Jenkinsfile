@@ -33,9 +33,6 @@ pipeline{
         AWS_EB_APP_NAME = "delightapp"
         AWS_EB_ENVIRONMENT = "Delightapp-prod-env"
         AWS_EB_APP_VERSION = "${buildNumber}"
-
-
-
      }
 
      stages {
