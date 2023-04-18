@@ -27,4 +27,4 @@ This project is titled as Hybrid because Jenkins will be used as Continuous Inte
   - Create S3 bucket.
   - Create IAM user with access keys and beanstalk policy and s3 policy.
   - Create a Beanstalk environment.
--	Create a Jenkins file for both.
+-	Create a Jenkins file for both
