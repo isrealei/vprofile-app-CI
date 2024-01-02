@@ -3,7 +3,7 @@
 
 Continuous Integration (CI) is a development practice that requires developers to regularly commit their code changes to a shared repository. Each commit is then automatically built, tested, and integrated into the software build. This helps identify errors and conflicts early in the development cycle, reducing the risk of bugs and errors in the final product.
 
-This project aims to implement a CI process using Jenkins and other tools to automate the build, test, and release cycle. By automating these processes, developers can get real-time feedback on their code changes, and bugs can be caught early in the development cycle.
+This project aims to implement a CI process using Jenkins and other tools to automate the build, test, and release cycle. By automating these processes, developers can get real-time feedback on their code changes, and bugs can be caught early in the development cycle.....
 
 
 ### Scenario
